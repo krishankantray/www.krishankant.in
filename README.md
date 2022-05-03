@@ -1,2 +1,1 @@
-# www.krishankant.in
-krishankant.in/
+# My personal site at [https://krishankant.in](https://krishankant.in/)
