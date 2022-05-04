@@ -8,7 +8,7 @@ const siteMetadata = {
   snippets: 'Reuseable code snippets',
   language: 'en-us',
   siteUrl: 'https://www.krishankant.in',
-  siteRepo: 'https://github.com/krishankantray/krishankant.in',
+  siteRepo: 'https://github.com/krishankantray/www.krishankant.in',
   siteLogo: '/static/images/logo.png',
   image: '/static/images/logo.png',
   socialBanner: '/static/images/logo.png',
