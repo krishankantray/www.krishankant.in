@@ -61,10 +61,7 @@ export default function Home({ posts }) {
                 </Link>
               </div>
               <br />
-              <p>
-                <b>DM on twitter: </b>{' '}
-                <TwitterDMButton id={402005073} options={{ size: 'large' }} />
-              </p>
+              <b>DM on twitter: </b> <TwitterDMButton id={402005073} options={{ size: 'large' }} />
             </div>
           </div>
           {/* <div className="hidden xl:block">
