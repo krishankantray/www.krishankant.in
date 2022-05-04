@@ -3,6 +3,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  html {
+    font-family: 'Varela Round', sans-serif;
+  }
+}
+
 .remark-code-title {
   @apply px-5 py-3 font-mono text-sm font-bold text-gray-200 bg-gray-700 rounded-t;
 }
