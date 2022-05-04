@@ -63,11 +63,10 @@ const ProfileCard = () => {
             src={'/static/images/logo.png'}
             alt="avatar"
             width="550px"
-            height="350px"
+            height="580px"
             className="object-cover"
             objectPosition="50% 16%"
           />
-          <Spotify data={data} />
           <ProfileInfo />
           <span className="h-1.5 bg-gradient-to-r from-green-300 via-blue-500 to-purple-600"></span>
         </div>
@@ -119,8 +118,8 @@ const Spotify = ({ data }) => {
 
 const ProfileInfo = () => (
   <div className="hidden xl:block xl:px-6 py-4">
-    <h1 className="text-xl font-semibold text-gray-800 dark:text-white">Tuan Anh (Leo) Huynh</h1>
-    <p className="py-2 text-gray-700 dark:text-gray-400">Learner | Builder</p>
+    <h1 className="text-xl font-semibold text-gray-800 dark:text-white">Krishankant Ray</h1>
+    <p className="py-2 text-gray-700 dark:text-gray-400">Software Engineer</p>
     <div className="flex items-center mt-4 text-gray-700 dark:text-gray-200">
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -137,7 +136,11 @@ const ProfileInfo = () => (
         />
       </svg>
 
-      <p className="px-2 text-[15px]">Self-employed - building products</p>
+      <p className="px-2 text-[15px]">
+        <a target="_blank" href="https://www.paisabazaar.com/" rel="noreferrer">
+          Paisabazaar.com
+        </a>
+      </p>
     </div>
 
     <div className="flex items-center mt-4 text-gray-700 dark:text-gray-200">
@@ -163,9 +166,9 @@ const ProfileInfo = () => (
       </svg>
 
       <p className="px-2 text-[15px]">
-        [::1]:443 - Ha Noi,
+        Gurgaon, India,
         <span className="align-middle flag-vn ml-1">
-          <Twemoji emoji="flag-vietnam" />
+          <Twemoji emoji="flag-india" />
         </span>
       </p>
     </div>
@@ -185,30 +188,13 @@ const ProfileInfo = () => (
           d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
         />
       </svg>
-      <p className="px-2 text-[15px]">huynhtuananh21895@gmail.com</p>
+      <p className="px-2 text-[15px]">krishankant_rai@rediffmail.com</p>
     </div>
     <div className="flex items-center mt-4 text-gray-700 dark:text-gray-200">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className="h-6 w-6"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={1}
-          d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-        />
-      </svg>
+      <Twemoji emoji="twitter" />
       <p className="px-2 text-[15px]">
-        <a target="_blank" href="https://github.com/hta218" rel="noreferrer">
-          gh/hta218
-        </a>
-        ,{' '}
-        <a target="_blank" href="https://twitter.com/hta218_" rel="noreferrer">
-          tw/hta218_
+        <a target="_blank" href="https://twitter.com/krishankantray" rel="noreferrer">
+          @krishankantray
         </a>
       </p>
     </div>

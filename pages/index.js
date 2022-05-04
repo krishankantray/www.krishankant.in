@@ -64,9 +64,9 @@ export default function Home({ posts }) {
               <b>DM on twitter: </b> <TwitterDMButton id={402005073} options={{ size: 'large' }} />
             </div>
           </div>
-          {/* <div className="hidden xl:block">
+          <div className="hidden xl:block">
             <ProfileCard />
-          </div> */}
+          </div>
         </div>
       </div>
       <div className="border-t border-gray-200 dark:border-gray-700">
