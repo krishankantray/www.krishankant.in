@@ -1,0 +1,71 @@
+---
+title : "Codevita 2017 Round-1 Problem-C"
+date : "2017-09-26"
+tags : []
+---
+
+### Problem: 
+CodeVita 2017 Round 1 Problem -C
+
+[Download Problem](http://s000.tinyupload.com/?file_id=52952119059621072275)
+
+Solution: 
+
+```cpp
+    /*
+     Author: Krishankant Ray
+     * CodeVita 2017 Round 1
+     */
+
+    #include<iostream>
+    #include<vector>
+
+    using namespace std;
+    int main()
+    {
+        int d,k=0;
+        string arr;
+        cin>>d;
+        cin>>arr;
+        int n=arr.length();
+        char R[n];
+
+        for(int f=0; f<n; )
+        {
+
+            R[f]=arr[k++];
+
+            f+=((2*d)-2);
+        }
+        for(int i=1; i<d-1;i++)
+        {
+            R[i]=arr[k++];
+            for(int j=i; j<n;)
+            {
+
+                j+=((2*d)-2-(2*i));
+                R[j]=arr[k++];
+
+                j+=((2*i));
+                if(j<n)
+                R[j]=arr[k++];
+
+            }
+        }
+
+        for(int l=d-1; l<n;l+=((2*d)-2))
+        {
+            R[l]=arr[k++];
+
+        }
+        for(int f=0; f<n;f++)
+        {
+            if(R[f]=='X')
+                break;
+            else
+            cout<<R[f];
+        }
+
+        return 0;
+    }
+```

@@ -1,0 +1,67 @@
+---
+title : "CodeChef SEPT17 Sereja and Commands (code: SEACO) "
+date : "2017-09-11"
+tags : []
+---
+
+#### Problem: [https://www.codechef.com/SEPT17/problems/SEACO](https://www.codechef.com/SEPT17/problems/SEACO)
+
+
+#### Solution:   
+
+```cpp
+        #include<iostream>
+        #include<vector>
+         
+        using namespace std;
+         
+        void incr(int a[], int i, int j)
+        {
+            for(;i<=j;i++)
+                a[i]++;
+        }
+         
+        void comm(int a[],int c[][3], int l, int r)
+        {
+            for(int i=l; i<=r;i++)
+            {
+                if(c[i][0]==1)
+                    incr(a,c[i][1]-1, c[i][2]-1);
+                else
+                    comm(a,c,c[i][1]-1, c[i][2]-1);
+            }
+        }
+        int main()
+        {
+            int t;
+            cin>>t;
+            while(t--)
+            {
+                int n,m,temp;
+                cin>>n>>m;
+                int a[n] ;
+                fill_n(a,n,0);
+                
+                int c[m][3];
+                for(int i=0; i<m; i++)
+                {
+                    cin>>c[i][0];
+                    cin>>c[i][1];
+                    cin>>c[i][2];
+                }
+                
+                comm(a,c, 0, m-1);
+                
+                for(int i=0; i<n; i++)
+                {
+                    cout<<a[i]<<" ";
+                }
+                cout<<endl;
+                    
+                
+            }
+            
+                
+            return 0;
+        }
+```

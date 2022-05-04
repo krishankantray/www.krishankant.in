@@ -1,0 +1,70 @@
+---
+title : "Kadane's Algorithm"
+date : "2020-04-03"
+tags : []
+---
+ 
+  
+TL;DR  
+  
+
+-   This algorithm is used to find maximum sum sub-array from a given
+    array. 
+-   Its has O(n) time complexity and O(1) space complexity.  
+-   It works irrespective of whether the elements are positive or
+    negative, whether sorted or unsorted. 
+-   Its DP approach
+-   Its brute force approach takes O(n^2) as it calculates all possible
+    sub-array and then return maximum out of them. 
+
+  
+  
+Since brute force approach is very obvious and easy to implement, so, I am not discussing it here.
+
+Lets directly jump to Kadane's Algorithm : 
+
+Its uses two variables one stores local maximum ( local_maximum ) and other stores global maximum ( global_maximum ) .
+Initialise , local_maximum = 0 and global_maximum = -Infinity 
+
+
+We start iteration from the first element, and for each element we check following condition before updating the local_maximum :
+if  local_maximum < 0 ,  then local_maximum = arr[i] ,  this is because if local_maximum is negative value then adding it with current value will result into lower value.
+Otherwise, if local_maximum >=0 then local_maximum= local_maximum + arr[i] .
+Now, we got local_maximum till current element, its time to compare it with global_maximum . 
+ 
+If global_maximum < local_maximum then  global maximum = local_maximum              
+ 
+ Thats it, now after whole iteration is finished the our answer is the value of global_maximum. 
+
+
+ 
+Now, its time to code it out : 
+Language used : `JavaScript`
+
+```js
+
+    var maxSubArray = function(nums) {
+        var local_maximum=0;
+        
+        return nums
+            .reduce( (global_maximum,current_element)=>{
+            
+            if(local_maximum <0 ) {
+                local_maximum = current_element ;
+            }
+            else
+                local_maximum = local_maximum + current_element ;
+            
+            global_maximum =  Math.max(global_maximum,local_maximum);
+            
+            return global_maximum ;
+            
+        }, -Infinity);
+    };
+```
+  
+
+  
+
+Please read about reduce function in JS if you don't already know about
+it.

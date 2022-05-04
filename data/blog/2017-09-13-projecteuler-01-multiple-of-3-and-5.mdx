@@ -1,0 +1,44 @@
+---
+title: "Project Euler - Multiple of 3 and 5"
+date: "2017-09-03"
+tags: []
+---
+
+#### Problem : [https://www.hackerrank.com/contests/projecteuler/challenges/euler001](https://www.hackerrank.com/contests/projecteuler/challenges/euler001)
+
+
+#### Solution:
+
+```cpp
+    #include <iostream>
+    using namespace std;
+    int main()
+    {
+        int t;
+        cin >> t;
+        while (t--) {
+            long long int n, x, y, z, m3, m5, m15, sum = 0;
+            cin >> n;
+            if (n % 3 == 0)
+                x = (n - 1) / 3;
+            else
+                x = n / 3;
+            if (n % 5 == 0)
+                y = (n - 1) / 5;
+            else
+                y = n / 5;
+            if (n % 15 == 0)
+                z = (n - 1) / 15;
+            else
+                z = n / 15;
+
+            m3 = (x * ((2 * 3) + (x - 1) * 3)) / 2;
+            m5 = (y * ((2 * 5) + (y - 1) * 5)) / 2;
+            m15 = (z * ((2 * 15) + (z - 1) * 15)) / 2;
+            sum = m3 + m5 - m15;
+            cout << sum << endl;
+            sum = 0;
+        }
+        return 0;
+    }
+```

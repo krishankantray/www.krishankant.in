@@ -1,0 +1,95 @@
+---
+title : "Codechef SEPT17 CookOff - Subsequence Equality Problem Code: LIKECS01"
+date : "2017-09-18"
+tags : []
+---
+
+### Problem : [https://www.codechef.com/problems/LIKECS01](https://www.codechef.com/problems/LIKECS01)
+
+Chef Tobby is playing a rapid fire with Bhuvan. He gives Bhuvan a string
+**S** and each time, Bhuvan has to guess whether there exists **2**
+equal [subsequences](https://en.wikipedia.org/wiki/Subsequence) in the
+string or not.  
+Bhuvan got a perfect score in the game with Chef Tobby. However, Chef
+Tobby has now asked Bhuvan to write a program that will do this
+automatically given a string **S**. Bhuvan is an intelligent man but he
+does not know how to write a code. Can you help him?  
+Find two different subsequences such that they are equal in their value,
+more formally, find two sequences of indices (a<sub>1</sub>,
+a<sub>2</sub>, ..., a<sub>k-1</sub>, a<sub>k</sub>) and (b<sub>1</sub>,
+b<sub>2</sub>, ..., b<sub>k-1</sub>, b<sub>k</sub>) such that:  
+
+1.  1≤ a<sub>i</sub>, b<sub>i</sub> ≤ |S|
+2.  a<sub>i</sub> &lt; a<sub>i+1</sub> for all valid i
+3.  b<sub>i</sub> &lt; b<sub>i+1</sub> for all valid i
+4.  S<sub>a<sub>i</sub></sub> = S<sub>b<sub>i</sub></sub> for all valid
+    i
+5.  there exist at least one i such that a<sub>i</sub> is not equal to
+    b<sub>i</sub>
+
+### Input section
+
+The first line contains **T**, the number of test cases.  
+Each of the next **T** lines contain one string **S** each.  
+**Input will only consist of lowercase english characters**  
+  
+
+### Output section
+
+For each test case, output **"yes"** or **"no"** (without quotes) as the
+solution to the problem.  
+
+### Input constraints
+
+    1 ≤ T ≤ 1000
+    1 ≤ length of S ≤ 100
+
+### Sample Input
+
+    4
+    likecs
+    venivedivici
+    bhuvan
+    codechef
+
+### Sample Output
+
+    no
+    yes
+    no
+    yes
+
+### Explanation
+
+In test case **2**, one of the possible equal subsequence is **"vi"**
+and **"vi"**. (one at position **{0, 3}** and other at **{4, 7}**,
+assuming 0-based indexing).  
+In test case **4**, one of the possible equal subsequence is **"ce"**
+and **"ce"**. (one at position **{0, 3}** and other at **{4, 6}**,
+assuming 0-based indexing).  
+
+
+### Solution
+```cpp
+    #include <iostream>
+    #include <set>
+    using namespace std;
+    int main()
+    {
+        int t;
+        cin >> t;
+        while (t--) {
+            set<char> st;
+            string s;
+            cin >> s;
+            for (int i = 0; i < s.length(); i++)
+                st.insert(s[i]);
+            if (st.size() == s.length())
+                cout << "no" << endl;
+            else
+                cout << "yes" << endl;
+        }
+
+        return 0;
+    }
+```
