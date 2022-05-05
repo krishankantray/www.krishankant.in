@@ -1,13 +1,12 @@
-import Image from 'next/image'
-
+/* eslint-disable @next/next/no-img-element */
 export default function ContactUs() {
   return (
     <section className="text-gray-600 body-font">
       <div className="container px-5 py-24 mx-auto flex flex-wrap items-center">
-        <div className="invisible sm:visible lg:w-1/2 md:w-1/2 md:pr-16 lg:pr-0 pr-0">
-          <Image src="/static/images/contactus.svg" />
+        <div className="invisible sm:visible lg:w-3/5 md:w-1/2 md:pr-16 lg:pr-0 pr-0">
+          <img src="/static/images/contactus.svg" layout="fill" />
         </div>
-        <div className="lg:w-1/2 md:w-1/2 bg-gray-300 rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0">
+        <div className="lg:w-2/5 md:w-1/2 bg-gray-300 opacity-90 rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0">
           <div className="relative mb-4">
             <label htmlFor="full-name" className="leading-7 text-sm text-gray-600">
               Full Name
