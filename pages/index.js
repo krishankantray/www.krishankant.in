@@ -13,7 +13,6 @@ const MAX_DISPLAY = 15
 
 export async function getStaticProps() {
   const posts = await getAllFilesFrontMatter('blog')
-  console.log(posts)
   return { props: { posts } }
 }
 
