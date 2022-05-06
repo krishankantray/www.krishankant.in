@@ -19,10 +19,7 @@ export default function ContactLayout({ children, frontMatter }) {
 
   return (
     <>
-      <PageSeo
-        title={`Contact - ${name} - ${title}`}
-        description={`Contact - ${name} - ${title}`}
-      />
+      <PageSeo title={`Contact - Krishankant`} description={`Contact - Krishankant`} />
       <ScrollTop />
       <div className="divide-y">
         <div className="pt-6 pb-8 space-y-2 md:space-y-5">
