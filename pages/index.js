@@ -55,9 +55,9 @@ export default function Home({ posts }) {
                 <Link href="/about" className="hover:underline">
                   <Twemoji emoji="face-with-monocle" /> More about me and myself
                 </Link>
-                <Link href="/resume" className="hover:underline">
+                {/* <Link href="/resume" className="hover:underline">
                   <Twemoji emoji="briefcase" /> My resume
-                </Link>
+                </Link> */}
               </div>
               <br />
               <b>DM on twitter: </b> <TwitterDMButton id={402005073} options={{ size: 'large' }} />
