@@ -1,11 +1,17 @@
 import siteMetadata from '@/data/siteMetadata'
-import projectsData from '@/data/projectsData'
 import ProjectCard from '@/components/ProjectCard'
 import { PageSeo } from '@/components/SEO'
+import { githubRepos } from '@/lib/github'
+import projectRepos from '@/data/projectsData'
 
-export default function Projects() {
-  const workProjects = projectsData.filter(({ type }) => type === 'work')
-  const sideProjects = projectsData.filter(({ type }) => type === 'self')
+function Projects({ workProjects }) {
+  const mainProjects = workProjects?.filter(
+    (item) => !item.fork && projectRepos.includes(item.name)
+  )
+
+  const sideProjects = workProjects?.filter(
+    (item) => !item.fork && !projectRepos.includes(item.name)
+  )
 
   return (
     <>
@@ -21,39 +27,29 @@ export default function Projects() {
         </div>
         <div className="container py-12">
           <h3 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 mb-4">
-            Work
+            Main Works
           </h3>
           <div className="flex flex-wrap -m-4">
-            {workProjects.map((project) => (
-              <ProjectCard
-                key={project.title}
-                title={project.title}
-                description={project.description}
-                imgSrc={project.imgSrc}
-                href={project.href}
-                repoName={project.repoName}
-              />
-            ))}
+            <ProjectCard projList={mainProjects} />
           </div>
         </div>
         <div className="container py-12">
           <h3 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 mb-4">
-            Side Projects
+            Other Works
           </h3>
           <div className="flex flex-wrap -m-4">
-            {sideProjects.map((project) => (
-              <ProjectCard
-                key={project.title}
-                title={project.title}
-                description={project.description}
-                imgSrc={project.imgSrc}
-                href={project.href}
-                repoName={project.repoName}
-              />
-            ))}
+            <ProjectCard projList={sideProjects} />
           </div>
         </div>
       </div>
     </>
   )
 }
+
+Projects.getInitialProps = async () => {
+  const workProjects = await githubRepos()
+  if (workProjects.constructor === Array) return { workProjects }
+  return []
+}
+
+export default Projects

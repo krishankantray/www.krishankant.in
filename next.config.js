@@ -9,7 +9,7 @@ module.exports = withBundleAnalyzer({
     dirs: ['pages', 'components', 'lib', 'layouts', 'scripts'],
   },
   images: {
-    domains: ['img.shields.io', 'i.scdn.co'],
+    domains: ['img.shields.io', 'i.scdn.co', 'avatars.githubusercontent.com'],
   },
   webpack: (config, { dev, isServer }) => {
     config.module.rules.push({

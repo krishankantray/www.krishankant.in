@@ -1,52 +1,53 @@
-import Image from './Image'
+import { RepoCard } from 'react-repo-widget'
+import { useTheme } from 'next-themes'
+import Image from 'next/image'
 import Link from './Link'
 
-const ProjectCard = ({ title, description, imgSrc, href, repoName }) => (
-  <div className="p-4 md:w-1/2 md" style={{ maxWidth: '544px' }}>
-    <div className="h-full overflow-hidden border dark:hover:border-gray-400 dark:border-gray-600 border-gray-400 hover:border-gray-500 rounded-md border-opacity-60">
-      <Image
-        alt={title}
-        src={imgSrc}
-        className="object-cover object-center lg:h-48 md:h-36"
-        width={1088}
-        height={612}
-      />
-      <div className="p-6">
-        <div className="flex justify-between mb-3">
-          <h2 className="text-2xl font-bold leading-8 tracking-tight">
-            {href ? (
-              <Link href={href} aria-label={`Link to ${title}`}>
-                {title}
-              </Link>
-            ) : (
-              title
-            )}
-          </h2>
-          {!repoName ? null : (
-            <div className="flex-shrink-0 mt-0.5">
-              <Image
-                alt={title}
-                src={`https://img.shields.io/github/stars/hta218/${repoName}.svg?style=social&label=Stars&maxAge=2592000`}
-                shouldOpenLightbox={false}
-                width={112}
-                height={28}
-              />
-            </div>
-          )}
-        </div>
-        <p className="mb-3 prose text-gray-500 max-w-none dark:text-gray-400">{description}</p>
-        {href && (
+const ProjectCard = ({ projList }) => {
+  const { theme, resolvedTheme } = useTheme()
+  const isDark = theme === 'dark'
+  const USERNAME = 'krishankantray'
+  console.log(projList)
+  const repoData = projList.map((proj) => ({
+    name: proj.name,
+    owner: { avatarUrl: proj.owner?.avatar_url, login: proj.owner?.login },
+    description: proj.description,
+    forks: { totalCount: proj.forks_count },
+    primaryLanguage: { name: proj.language },
+    licenseInfo: { spdxId: proj.license?.spdxId },
+    pushedAt: proj.pushed_at,
+    stargazerCount: proj.stargazers_count,
+    watchers: { totalCount: proj.watchers_count },
+  }))
+  return (
+    <div className="grid grid-cols-3 gap-4">
+      {repoData?.map((proj, ind) => (
+        <div className="flex items-center justify-center bg-dark" key={ind}>
           <Link
-            href={href}
-            className="text-base font-medium leading-6 text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
-            aria-label={`Link to ${title}`}
+            href={`https://github.com/${proj.owner.login}/${proj.name}`}
+            target="_blank"
+            rel="noreferrer"
+            className="w-72 bg-dark border rounded-lg border-gray-700 p-5 shadow hover:bg-gray-600 delay-100 duration-200"
           >
-            Learn more &rarr;
+            <div className="flex flex-row">
+              <Image
+                src={proj.owner.avatarUrl}
+                alt="avatar"
+                height={27}
+                width={32}
+                class="rounded"
+              />
+              <p className="ml-3">
+                <span className="text-gray-500 font-semibold">/</span>
+                <span className="text-gray-300 font-semibold">{proj.name}</span>
+              </p>
+            </div>
+            <p className="text-xs text-gray-400 mt-3">{proj.description}</p>
           </Link>
-        )}
-      </div>
+        </div>
+      ))}
     </div>
-  </div>
-)
+  )
+}
 
 export default ProjectCard
