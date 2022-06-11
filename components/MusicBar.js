@@ -1,45 +1,41 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import ReactJkMusicPlayer from 'react-jinke-music-player'
 import { useTheme } from 'next-themes'
 import 'react-jinke-music-player/assets/index.css'
 import PlaylistCard from './PlaylistCard'
-import romanticPlaylist from 'https://raw.githubusercontent.com/krishankantray/music-playlists/main/romantic/playlist.json'
+import { musicPlaylist } from '@/lib/musicPlaylist'
 
-const meaningfulPlaylist = {
-  name: 'Meaningful',
-  thumbnail: '',
-  desc: 'Songs with deep meaning lyrics',
-  list: [
-    {
-      name: 'Kali Kali Zulfo Ke',
-      singer: 'Nusrat Fateh',
-      cover: '/static/images/default_track.png',
-      musicSrc:
-        'https://raw.githubusercontent.com/krishankantray/music-playlists/main/meaningful/Kali_Kali_Zulfon_Ke.mp3',
-    },
-  ],
-}
-
-const lofiPlaylist = {
-  name: 'Romantic',
-  thumbnail: '',
-  desc: '',
-  list: [
-    {
-      name: 'Kali Kali Zulfo Ke',
-      singer: 'Nusrat Fateh',
-      cover: '/static/images/default_track.png',
-      musicSrc:
-        'https://raw.githubusercontent.com/krishankantray/music-playlists/main/meaningful/Kali_Kali_Zulfon_Ke.mp3',
-    },
-  ],
-}
+const ROMANTIC_PLAYLIST =
+  'https://raw.githubusercontent.com/krishankantray/music-playlists/main/romantic/playlist.json'
+const MEANINGFUL_PLAYLIST =
+  'https://raw.githubusercontent.com/krishankantray/music-playlists/main/meaningful/playlist.json'
+const LOFI_PLAYLIST =
+  'https://raw.githubusercontent.com/krishankantray/music-playlists/main/lofi/playlist.json'
+const PUNJABI_PLAYLIST =
+  'https://raw.githubusercontent.com/krishankantray/music-playlists/main/punjabi/playlist.json'
 
 export default function MusicBar() {
-  const [localAudioList, setLocalAudioList] = useState(meaningfulPlaylist)
-  const { theme, resolvedTheme } = useTheme()
+  const [localAudioList, setLocalAudioList] = useState([])
+  const { theme } = useTheme()
+  const [loadingPlaylist, setLoadingPlaylist] = useState(true)
+  const [playlists, setPlaylists] = useState({})
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoadingPlaylist(true)
+      const romanticPlaylist = await musicPlaylist(ROMANTIC_PLAYLIST)
+      const meaningfulPlaylist = await musicPlaylist(MEANINGFUL_PLAYLIST)
+      const lofiPlaylist = await musicPlaylist(LOFI_PLAYLIST)
+      const punjabiPlaylist = await musicPlaylist(PUNJABI_PLAYLIST)
+      await setTimeout(() => {}, 300)
+      setPlaylists({ romanticPlaylist, meaningfulPlaylist, lofiPlaylist, punjabiPlaylist })
+      setLocalAudioList(romanticPlaylist)
+      setLoadingPlaylist(false)
+      console.log(playlists)
+    }
+    fetchData().catch(console.error)
+  }, [])
   const options = {
-    audioLists: localAudioList,
+    audioLists: localAudioList.list,
     toggleMode: false,
     showDestroy: false,
     showReload: false,
@@ -60,14 +56,37 @@ export default function MusicBar() {
     },
   }
 
-  return (
-    <div>
-      <div className="grid grid-flow-row-dense grid-cols-3 grid-rows-3">
-        <PlaylistCard playlist={meaningfulPlaylist} />
-        <PlaylistCard playlist={lofiPlaylist} />
-        <PlaylistCard playlist={romanticPlaylist} />
-        <PlaylistCard />
-        <PlaylistCard />
+  return loadingPlaylist ? (
+    <div className="flex h-screen justify-center items-center">
+      <div className="text-center">
+        <div className="lds-heart">
+          <div></div>
+        </div>
+      </div>
+    </div>
+  ) : (
+    <div className="container my-12 mx-auto px-4 md:px-12">
+      <div className="flex flex-wrap -mx-1 lg:-mx-4">
+        <PlaylistCard
+          playlist={playlists.lofiPlaylist}
+          setLocalAudioList={setLocalAudioList}
+          localAudioList={localAudioList}
+        />
+        <PlaylistCard
+          playlist={playlists.romanticPlaylist}
+          setLocalAudioList={setLocalAudioList}
+          localAudioList={localAudioList}
+        />
+        <PlaylistCard
+          playlist={playlists.punjabiPlaylist}
+          setLocalAudioList={setLocalAudioList}
+          localAudioList={localAudioList}
+        />
+        <PlaylistCard
+          playlist={playlists.meaningfulPlaylist}
+          setLocalAudioList={setLocalAudioList}
+          localAudioList={localAudioList}
+        />
       </div>
       <ReactJkMusicPlayer {...options} />
     </div>

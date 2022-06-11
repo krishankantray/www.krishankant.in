@@ -55,6 +55,9 @@ export default function Home({ posts }) {
                 <Link href="/about" className="hover:underline">
                   <Twemoji emoji="face-with-monocle" /> More about me and myself
                 </Link>
+                <Link href="/music" className="hover:underline">
+                  <Twemoji emoji="music" /> My songs playlist
+                </Link>
                 {/* <Link href="/resume" className="hover:underline">
                   <Twemoji emoji="briefcase" /> My resume
                 </Link> */}

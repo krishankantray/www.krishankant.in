@@ -2,6 +2,7 @@
 import '@/css/tailwind.css'
 import '@/css/twemoji.css'
 import '@/css/timeline.css'
+import '@/css/spinner.css'
 import NextNProgress from 'nextjs-progressbar'
 import { ThemeProvider } from 'next-themes'
 import Head from 'next/head'
