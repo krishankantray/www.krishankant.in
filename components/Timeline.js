@@ -1,4 +1,5 @@
 import timelineData from '@/data/timelineData'
+import Twemoji from '@/components/Twemoji.js'
 
 const TimelineItem = ({ time, role, company, companyURL, companyBio, works, last }) => {
   return (
@@ -17,10 +18,12 @@ const TimelineItem = ({ time, role, company, companyURL, companyBio, works, last
         {companyBio ? ` - ${companyBio}` : null}
         {works ? (
           <div className="block my-2">
-            <div className="mb-2">Key-works:</div>
+            <div className="mb-2 font-bold">Key-works:</div>
             <div className="pl-2">
               {works.map((work, ind) => (
-                <div key={ind}>- {work}</div>
+                <div key={ind}>
+                  <Twemoji emoji="item" /> {work}
+                </div>
               ))}
             </div>
           </div>
