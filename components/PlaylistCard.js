@@ -7,7 +7,7 @@ export default function PlaylistCard({ playlist, setLocalAudioList, localAudioLi
   }
   return (
     <div className="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
-      <article className="overflow-hidden rounded-lg shadow-lg">
+      <article className="overflow-hidden rounded-lg">
         <div href="#">
           <img alt="Placeholder" className="block h-auto w-full" src={thumbnail} />
         </div>
@@ -20,7 +20,10 @@ export default function PlaylistCard({ playlist, setLocalAudioList, localAudioLi
         <p className="text-gray-300 text-sm p-2">{desc}</p>
         <footer className="flex items-center justify-between leading-none p-2 md:p-4">
           {localAudioList.name === name ? (
-            <img src="https://i.gifer.com/Z23b.gif" width={60} />
+            <span className="text-pink-700 font-bold">
+              Playing
+              <img src="/static/images/giphy.gif" width={100} />
+            </span>
           ) : (
             <button
               className="bg-teal-400 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded-full "
